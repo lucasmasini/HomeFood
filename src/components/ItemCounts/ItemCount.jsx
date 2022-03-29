@@ -5,23 +5,28 @@ import Typography from '@mui/material/Typography';
 const ButtonCount = ({stock,titleAdd,titleLess,initial}) => {
     if(stock === 0){initial = 0;};
     const [stockButton,setstockButton] = useState(initial);
-    const onAdd = () => {
+    const handlerAdd = () => {
         if(stockButton < stock){
             setstockButton(stockButton + 1);
         }
     };
-    const onLess= () =>{
+    const handlerLess= () =>{
         if(stockButton> 0){
             setstockButton(stockButton - 1);
         }
     };
-    console.log(stock)
+    const onAdd = () =>{
+        if(stock > 0 && stockButton > 0 ){
+            alert(`Se agregaron ${stockButton} productos al carrito`);
+        }
+    }
 
     return(
         <>
-            <Button style={button} onClick={onLess}>{titleLess}</Button>
+            <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
             <Typography>{stockButton}</Typography>
-            <Button style={button} onClick={onAdd}>{titleAdd}</Button>
+            <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
+            <Button style={buttonAdd} onClick={onAdd}>Agregar al carrito</Button>
         </>
     );
 }
@@ -29,11 +34,19 @@ const ButtonCount = ({stock,titleAdd,titleLess,initial}) => {
 export default ButtonCount;
 
 
-const button ={
+const buttonHandler ={
     backgroundColor: '#c94c2a',
     border: '0.1px solid black',
     color:'white',
     height:'100%',
     fontSize: 20,
     padding:0
+}
+const buttonAdd ={
+    backgroundColor: '#c94c2a',
+    border: '0.1px solid black',
+    color:'white',
+    height:'100%',
+    fontSize: 9,
+    padding: 5
 }

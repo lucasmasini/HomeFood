@@ -18,7 +18,7 @@ const Cards = ({name,urlImage,description,stock,price})=> {
                     alt={name}
                     sx={{height:'50%'}}
                 /><div className='cardText'>
-                    <CardContent sx={{height:'123px'}}>
+                    <CardContent sx={{height:'145px'}}>
                         <Typography gutterBottom variant="h5" component="div">
                             {name}
                         </Typography>
@@ -28,12 +28,12 @@ const Cards = ({name,urlImage,description,stock,price})=> {
                         <Typography variant="body1" color="text.secondary" sx={{paddingTop: '3px'}}>
                             Stock:{stock}
                         </Typography>
-                    </CardContent>
-                    <CardActions className='cardAction' style={cardAction}>
-                        <ButtonCount stock={stock} titleAdd='+' titleLess='-' initial={1} />
                         <Typography variant="body">
                             Precio:${price}
                         </Typography>
+                    </CardContent>
+                    <CardActions className='cardAction' style={cardAction}>
+                        <ButtonCount stock={stock} titleAdd='+' titleLess='-' initial={1} />
                     </CardActions>
                 </div>
             </Card>
@@ -49,7 +49,7 @@ export default Cards;
 
 const card = {
     display:'flex',
-    height:'410px',
+    height:'446px',
     padding:'5px',
 }
 const cardAction = {
