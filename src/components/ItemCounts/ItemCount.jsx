@@ -3,9 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const ButtonCount = ({stock,titleAdd,titleLess,initial}) => {
-    if(stock === 0){
-        initial = 0;
-    };    
+    if(stock === 0){initial = 0;};
     const [stockButton,setstockButton] = useState(initial);
     const onAdd = () => {
         if(stockButton < stock){
