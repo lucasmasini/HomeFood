@@ -1,6 +1,4 @@
-import Cards from '../CardsProducts/Cards';
-import ButtonCount from '../ItemCounts/ItemCount'
-import { useEffect,useState } from 'react';
+import ItemListCards from '../ItemListCards/ItemListCards';
 
 const productList = [
     { name: 'Paella', urlImage: 'https://images.aws.nestle.recipes/original/bad4d3b51ce0e061b4ed00574e00ed03__0015_16_-__Paella.jpg', description: 'Plato tipico español. Se trata de una base de mariscos con arroz y verduras', stock: 4, id: 'F1', price: 1200 },
@@ -11,40 +9,12 @@ const productList = [
     { name: 'Pizza', urlImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-pizza-on-table-royalty-free-image-995467932-1559051477.jpg', description: 'Plato tipico de italia. Se trata de una maza decorada con tomate y queso por encima', stock: 6, id: 'F6', price: 1100 }
 ];
 
-const productsPromise = new Promise((res,rej) =>{
-    res(productList);
-    rej('No se pudieron leer los productos');
-});
 
 const ItemListContainer = () => {
-
-    const [products,setProducts] = useState([]);
-    
-    useEffect(() => {
-        setTimeout(()=>{
-            productsPromise.then((e)=>{
-                setProducts(e);
-            })
-            .catch((error) => {
-                console.log(error);
-            })}
-            , 2000)
-    
-
-    }, [])
-    
-
     return (
         <>
             <div className='cardContainer' style={cardContainer}>
-                {products.map((product) =>{
-                    return(
-                    <Cards key={product.id} name={product.name} urlImage={product.urlImage} description={product.description} stock={product.stock} price={product.price}>
-                        <ButtonCount/>
-                    </Cards>
-                    
-                    )
-                })}
+                <ItemListCards productList={productList}/>
             </div>
             
         </>
@@ -52,6 +22,8 @@ const ItemListContainer = () => {
 };
 
 export default ItemListContainer;
+
+
 
 
 // ------ESTILOS--------
@@ -65,5 +37,5 @@ const cardContainer = {
     padding: '2em 0 0 1.2em',
     rowGap: '2.5em',
     columnGap: '.5em',
-    marginBottom: '300px'
+    marginBottom: '300px',
 };

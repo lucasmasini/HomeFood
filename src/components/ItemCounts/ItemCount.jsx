@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const ButtonCount = ({stock,titleAdd,titleLess,initial}) => {
+const ItemCount = ({stock,titleAdd,titleLess,initial}) => {
     if(stock === 0){initial = 0;};
     const [stockButton,setstockButton] = useState(initial);
     const handlerAdd = () => {
@@ -31,7 +31,7 @@ const ButtonCount = ({stock,titleAdd,titleLess,initial}) => {
     );
 }
 
-export default ButtonCount;
+export default ItemCount;
 
 
 const buttonHandler ={

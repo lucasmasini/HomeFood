@@ -4,10 +4,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import ButtonCount from '../ItemCounts/ItemCount';
+import ItemCount from '../ItemCounts/ItemCount';
 
 
-const Cards = ({name,urlImage,description,stock,price})=> {
+const CardsProducts = ({name,urlImage,description,stock,price})=> {
     return (
         <>
         <div className='card' style={card}>
@@ -33,7 +33,7 @@ const Cards = ({name,urlImage,description,stock,price})=> {
                         </Typography>
                     </CardContent>
                     <CardActions className='cardAction' style={cardAction}>
-                        <ButtonCount stock={stock} titleAdd='+' titleLess='-' initial={1} />
+                        <ItemCount stock={stock} titleAdd='+' titleLess='-' initial={1} />
                     </CardActions>
                 </div>
             </Card>
@@ -42,7 +42,7 @@ const Cards = ({name,urlImage,description,stock,price})=> {
     );
 };
 
-export default Cards;
+export default CardsProducts;
 
 
 // ------ESTILOS--------
