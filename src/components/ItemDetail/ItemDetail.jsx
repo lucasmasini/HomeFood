@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCounts/ItemCount';
 
 
-const CardsProducts = ({name,urlImage,description,stock,price})=> {
+const ItemDetail = ({name,urlImage,description,stock,price})=> {
     return (
         <>
         <div className='card' style={card}>
@@ -42,7 +42,7 @@ const CardsProducts = ({name,urlImage,description,stock,price})=> {
     );
 };
 
-export default CardsProducts;
+export default ItemDetail;
 
 
 // ------ESTILOS--------
