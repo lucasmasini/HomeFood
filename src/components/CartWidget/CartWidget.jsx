@@ -1,10 +1,11 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { height } from '@mui/system';
-
+import { NavLink } from 'react-router-dom';
 
 const CartWidget = ()=>{
     return(
-        <ShoppingCartIcon />
+        <NavLink to='/cart' style={{color: 'white'}}>
+            <ShoppingCartIcon/>
+        </NavLink>
     );
 };
 

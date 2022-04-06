@@ -7,33 +7,33 @@ import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCounts/ItemCount';
 
 
-const ItemDetail = ({name,urlImage,description,stock,price})=> {
+const ItemDetail = ({product})=> {
     return (
         <>
         <div className='card' style={card}>
             <Card sx={{ maxWidth: 320,minWidth: 280, border:'1px solid grey'}}>
                 <CardMedia
                     component="img"
-                    src={urlImage}
-                    alt={name}
+                    src={product.urlImage}
+                    alt={product.name}
                     sx={{height:'50%'}}
                 /><div className='cardText'>
                     <CardContent sx={{height:'145px'}}>
                         <Typography gutterBottom variant="h5" component="div">
-                            {name}
+                            {product.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {description}
+                            {product.description}
                         </Typography>
                         <Typography variant="body1" color="text.secondary" sx={{paddingTop: '3px'}}>
-                            Stock:{stock}
+                            Stock:{product.stock}
                         </Typography>
                         <Typography variant="body">
-                            Precio:${price}
+                            Precio:${product.price}
                         </Typography>
                     </CardContent>
                     <CardActions className='cardAction' style={cardAction}>
-                        <ItemCount stock={stock} titleAdd='+' titleLess='-' initial={1} />
+                        <ItemCount stock={product.stock} titleAdd='+' titleLess='-' initial={1} />
                     </CardActions>
                 </div>
             </Card>

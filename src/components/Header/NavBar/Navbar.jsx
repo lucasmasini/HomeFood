@@ -14,7 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import icono from '../../../assets/icono.png';
 import './NavBar.scss';
 import CartWidget from '../../CartWidget/CartWidget';
-import { Icon } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+
+
 
 const NavBar = ({pages,options}) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,10 +41,10 @@ const NavBar = ({pages,options}) => {
         <AppBar style={ContainerStyle} className="AppBar" position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography>
+                    <NavLink to="/">
                         <img src={icono} alt="icono de la pagina">
                         </img>
-                    </Typography>
+                    </NavLink>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -73,11 +75,16 @@ const NavBar = ({pages,options}) => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center"> {page} </Typography>
+                                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                                    <NavLink to={page.route} style={{ textDecoration: 'none', color: '#ff7c58' }}> 
+                                        {page.name} 
+                                    </NavLink>
                                 </MenuItem>
                             ))}
                         </Menu>
+                        <div style={{margin:'auto', paddingRight: 25,paddingTop:6, display: 'block',}}>
+                            <CartWidget/>
+                        </div>
                     </Box>
                     <Typography
                         variant="h6"
@@ -90,16 +97,18 @@ const NavBar = ({pages,options}) => {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.id}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2,paddingLeft: 1.5, paddingRight: 1.5, color: 'white', display: 'block' }}
-                            >
-                                {page}
+                                sx={{ my: 2,paddingLeft: 1.5, paddingRight: 1.5, display: 'block' }}
+                            > 
+                                <NavLink to={page.route}  style={{ textDecoration: 'none', color: 'white' }}>
+                                    {page.name}
+                                </NavLink>
                             </Button>
                         ))}
                         <Button onClick={handleCloseNavMenu} 
                         sx={{my: 2,paddingLeft: 1.5, paddingRight: 1.5, 
-                            marginBottom:1, color: 'white', display: 'block',}}
+                            marginBottom:1, display: 'block',}}
                         >
                             <CartWidget/>
                         </Button>
