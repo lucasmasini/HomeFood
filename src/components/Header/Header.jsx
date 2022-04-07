@@ -3,7 +3,12 @@ import './Header.scss';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const icon = ShoppingCartOutlinedIcon;
-const pages = [{name:'Productos',route:'/products',id:1 },{name:'Nosotros',route:'nosotros',id:2}];
+const pages = [
+    {name:'Productos',route:'/products',id:1 },
+    {name:'Nosotros',route:'nosotros',id:2},
+    {name:'Comida Rapida', route:'/categories/fastfood',id:"R1"},
+    {name:'Gourmet',route:'/categories/gourmet',id:"G1"}
+];
 const options = ['Perfil', 'Cuenta', 'Panel', 'Cerrar sesion'];
 
 const Header = () =>{

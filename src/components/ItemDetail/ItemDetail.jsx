@@ -50,6 +50,7 @@ export default ItemDetail;
 const card = {
     display:'flex',
     height:'446px',
+    witdh:'320px',
     padding:'5px',
 }
 const cardAction = {

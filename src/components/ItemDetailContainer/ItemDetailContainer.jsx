@@ -3,17 +3,23 @@ import ItemCount from '../ItemCounts/ItemCount';
 import { useEffect,useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
+import {useParams} from 'react-router-dom';
+import { ProductionQuantityLimits } from '@mui/icons-material';
 
 const ItemDetailContainer = () => {
     const [products,setProducts] = useState([]);
     const [loanding,setLoanding] = useState(true);   
     const [error,setError] = useState(false);
+    const {name} = useParams();
 
     const getItem = async ()=>{
         try{
-            const response = await fetch('https://mocki.io/v1/e7158b60-7446-4e2d-9b83-268102e8c1a4');
+            const response = await fetch('https://mocki.io/v1/26013644-68fd-4f36-a1dc-5d7392e653b5');
             const data = await response.json();
-            setProducts(data);
+            (name)? 
+            (setProducts(data.filter(product => product.category === name))
+            ):(
+            setProducts(data));
         }
         catch{
             setError(true);
@@ -23,9 +29,11 @@ const ItemDetailContainer = () => {
         }
     }
 
+
+
     useEffect(()=>{
-        setTimeout(()=>{getItem()},2000);
-    },[])
+        setTimeout(()=>{getItem()},1500);
+    },[name])
 
     return (
         <>
