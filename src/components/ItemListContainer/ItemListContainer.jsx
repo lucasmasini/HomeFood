@@ -1,10 +1,11 @@
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 
+
 const ItemListContainer = () => {
     return (
         <>
             <div className='cardContainer' style={cardContainer}>
-                <ItemDetailContainer/>
+                <ItemDetailContainer />
             </div>
             
         </>

@@ -8,6 +8,7 @@ import MainPage from './components/MainPage/MainPage.jsx';
 import Footer from './components/Footer/Footer.jsx'
 
 
+
 const App = () => {
   return(
     <>

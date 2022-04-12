@@ -7,7 +7,23 @@ import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCounts/ItemCount';
 
 
+
 const ItemDetail = ({product})=> {
+    const AddQuantity = (stock,stockButton,setstockButton) => {
+        if(stockButton < stock){
+            setstockButton(stockButton + 1);
+        }
+    };
+    const LessQuantity= (stockButton,setstockButton) =>{
+        if(stockButton> 0){
+            setstockButton(stockButton - 1);
+        }
+    };
+    const finishBuy = (stockButton,stock) =>{
+        if(stock > 0 && stockButton > 0 ){
+            alert(`Se agregaron ${stockButton} productos al carrito`)
+        }
+    }
     return (
         <>
         <div className='card' style={card}>
@@ -33,7 +49,10 @@ const ItemDetail = ({product})=> {
                         </Typography>
                     </CardContent>
                     <CardActions className='cardAction' style={cardAction}>
-                        <ItemCount stock={product.stock} titleAdd='+' titleLess='-' initial={1} />
+                        <ItemCount 
+                        stock={product.stock} titleAdd='+' titleLess='-' initial={1} 
+                        AddQuantity={AddQuantity} LessQuantity={LessQuantity} finishBuy={finishBuy}
+                        />
                     </CardActions>
                 </div>
             </Card>

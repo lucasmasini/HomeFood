@@ -1,10 +1,9 @@
 import ItemDetail from '../ItemDetail/ItemDetail';
-import ItemCount from '../ItemCounts/ItemCount';
 import { useEffect,useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import {useParams} from 'react-router-dom';
-import { ProductionQuantityLimits } from '@mui/icons-material';
+import ItemCount from '../ItemCounts/ItemCount';
 
 const ItemDetailContainer = () => {
     const [products,setProducts] = useState([]);
@@ -46,9 +45,7 @@ const ItemDetailContainer = () => {
                 ):(
                     products.map((product) => {
                     return (
-                        <ItemDetail product={product}>
-                            <ItemCount />
-                        </ItemDetail>
+                        <ItemDetail product={product}/>
                     )
                 })))
             }

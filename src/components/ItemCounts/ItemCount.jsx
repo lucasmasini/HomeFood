@@ -1,32 +1,32 @@
 import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-const ItemCount = ({stock,titleAdd,titleLess,initial}) => {
+const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,finishBuy}) => {
     if(stock === 0){initial = 0;};
     const [stockButton,setstockButton] = useState(initial);
     const handlerAdd = () => {
-        if(stockButton < stock){
-            setstockButton(stockButton + 1);
-        }
+        AddQuantity(stock,stockButton,setstockButton);
     };
     const handlerLess= () =>{
-        if(stockButton> 0){
-            setstockButton(stockButton - 1);
-        }
+            LessQuantity(stockButton,setstockButton);
     };
     const onAdd = () =>{
-        if(stock > 0 && stockButton > 0 ){
-            alert(`Se agregaron ${stockButton} productos al carrito`);
-        }
+        finishBuy(stockButton,stock);
     }
+    const ruta = '/cart';
 
     return(
         <>
             <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
             <Typography>{stockButton}</Typography>
             <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
-            <Button style={buttonAdd} onClick={onAdd}>Agregar al carrito</Button>
+            <Button style={buttonAdd} onClick={onAdd}>
+                <Link to={ruta} style={{textDecoration: 'none'}}>
+                    Agregar al carrito
+                </Link>
+            </Button>
         </>
     );
 }
