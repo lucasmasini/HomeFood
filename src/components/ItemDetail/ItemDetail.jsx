@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCounts/ItemCount';
-
+import ItemExpanded from './itemExpanded'
 
 
 const ItemDetail = ({product})=> {
@@ -38,14 +38,17 @@ const ItemDetail = ({product})=> {
                         <Typography gutterBottom variant="h5" component="div">
                             {product.name}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        {/* <Typography variant="body2" color="text.secondary">
                             {product.description}
-                        </Typography>
-                        <Typography variant="body1" color="text.secondary" sx={{paddingTop: '3px'}}>
+                        </Typography> */}
+                        <Typography variant="body1" color="text.secondary" sx={{paddingTop: '4px'}}>
                             Stock:{product.stock}
                         </Typography>
-                        <Typography variant="body">
+                        <Typography variant="body" sx={{paddingTop: '4px'}}>
                             Precio:${product.price}
+                        </Typography>
+                        <Typography>
+                            <ItemExpanded product={product}/>
                         </Typography>
                     </CardContent>
                     <CardActions className='cardAction' style={cardAction}>

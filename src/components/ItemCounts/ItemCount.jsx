@@ -23,7 +23,7 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
             <Typography>{stockButton}</Typography>
             <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
             <Button style={buttonAdd} onClick={onAdd}>
-                <Link to={ruta} style={{textDecoration: 'none'}}>
+                <Link to={ruta} style={{textDecoration: 'none', color:'white'}}>
                     Agregar al carrito
                 </Link>
             </Button>
