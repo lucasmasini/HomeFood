@@ -1,0 +1,12 @@
+.CartList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul{
+        display: grid;
+        grid-template-columns: repeat(4, 200px);
+        list-style: none;
+        column-gap: 24px;
+        padding: 12px;
+    }
+}

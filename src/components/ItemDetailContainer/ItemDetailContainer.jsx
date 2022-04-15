@@ -7,7 +7,7 @@ const ItemDetailContainer = ({products}) => {
             {
             products.map((product) => {
                 return (
-                <ItemDetail product={product}>
+                <ItemDetail key={product.id} product={product}>
                     <ItemExpanded product={product}/>
                 </ItemDetail>)
             })

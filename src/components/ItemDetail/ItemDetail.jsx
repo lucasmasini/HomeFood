@@ -5,10 +5,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import ItemCount from '../ItemCounts/ItemCount';
-import ItemExpanded from './itemExpanded'
-
+import ItemExpanded from './itemExpanded';
+import { context } from '../Context/CartContext';
+import { useContext } from 'react';
+import { Button } from '@mui/material';
 
 const ItemDetail = ({product})=> {
+
+    const {addItem , isInCart } = useContext(context);
+
     const AddQuantity = (stock,stockButton,setstockButton) => {
         if(stockButton < stock){
             setstockButton(stockButton + 1);
@@ -21,9 +26,10 @@ const ItemDetail = ({product})=> {
     };
     const finishBuy = (stockButton,stock) =>{
         if(stock > 0 && stockButton > 0 ){
-            alert(`Se agregaron ${stockButton} productos al carrito`)
-        }
+            addItem(product,stockButton);
+        }        
     }
+
     return (
         <>
         <div className='card' style={card}>
@@ -38,9 +44,10 @@ const ItemDetail = ({product})=> {
                         <Typography gutterBottom variant="h5" component="div">
                             {product.name}
                         </Typography>
+                        {/* Es la descripcion del producto, para que se vea en la card o no */}
                         {/* <Typography variant="body2" color="text.secondary">
                             {product.description}
-                        </Typography> */}
+                        </Typography> */} 
                         <Typography variant="body1" color="text.secondary" sx={{paddingTop: '4px'}}>
                             Stock:{product.stock}
                         </Typography>
@@ -50,10 +57,15 @@ const ItemDetail = ({product})=> {
                         <Typography>
                             <ItemExpanded product={product}/>
                         </Typography>
+                        <Typography>
+                            <Button style={{padding:'1px',paddingTop:'2px'}} onClick={()=>isInCart(product.id)} /*onClick={isInCart(product.id)*/>
+                                Esta en carrito?
+                            </Button>
+                        </Typography>
                     </CardContent>
                     <CardActions className='cardAction' style={cardAction}>
                         <ItemCount 
-                        stock={product.stock} titleAdd='+' titleLess='-' initial={1} 
+                        stock={product.stock} titleAdd='+' titleLess='-' initial={0} 
                         AddQuantity={AddQuantity} LessQuantity={LessQuantity} finishBuy={finishBuy}
                         />
                     </CardActions>

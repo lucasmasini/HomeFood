@@ -1,4 +1,4 @@
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
+import ItemDetailContainer from '../../components/ItemDetailContainer/ItemDetailContainer';
 import { useState,useEffect } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
