@@ -19,9 +19,9 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
 
     return(
         <>
-            <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
-            <Typography>{stockButton}</Typography>
             <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
+            <Typography>{stockButton}</Typography>
+            <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
             <Button style={buttonAdd} onClick={onAdd}>
                 <Link to={ruta} style={{textDecoration: 'none', color:'white'}}>
                     Agregar al carrito

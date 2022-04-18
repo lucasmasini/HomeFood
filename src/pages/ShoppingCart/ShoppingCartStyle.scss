@@ -1,0 +1,24 @@
+
+.ShoppingCartPage{
+    text-align: center;
+    h2{
+        color: #c94c2a;
+        font-size: 32px;
+    }
+    p{ 
+        color: #c94c2a;
+        font-size: 16px;
+    }
+    .CartItemsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .deleteButton{
+        background-color: #f08f74;
+        border: 0.1px solid black;
+        color:white;
+        margin-bottom: 20px;
+    }
+}

@@ -58,7 +58,7 @@ const ItemDetail = ({product})=> {
                             <ItemExpanded product={product}/>
                         </Typography>
                         <Typography>
-                            <Button style={{padding:'1px',paddingTop:'2px'}} onClick={()=>isInCart(product.id)} /*onClick={isInCart(product.id)*/>
+                            <Button style={{padding:'1px',paddingTop:'2px'}} onClick={()=>isInCart(product.id)}>
                                 Esta en carrito?
                             </Button>
                         </Typography>
@@ -66,7 +66,7 @@ const ItemDetail = ({product})=> {
                     <CardActions className='cardAction' style={cardAction}>
                         <ItemCount 
                         stock={product.stock} titleAdd='+' titleLess='-' initial={0} 
-                        AddQuantity={AddQuantity} LessQuantity={LessQuantity} finishBuy={finishBuy}
+                        LessQuantity={LessQuantity} AddQuantity={AddQuantity}  finishBuy={finishBuy}
                         />
                     </CardActions>
                 </div>
