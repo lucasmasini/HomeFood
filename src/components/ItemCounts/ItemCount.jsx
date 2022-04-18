@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 
 const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,finishBuy}) => {
     if(stock === 0){initial = 0;};
@@ -15,7 +14,6 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
     const onAdd = () =>{
         finishBuy(stockButton,stock);
     }
-    const ruta = '/cart';
 
     return(
         <>
@@ -23,9 +21,7 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
             <Typography>{stockButton}</Typography>
             <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
             <Button style={buttonAdd} onClick={onAdd}>
-                <Link to={ruta} style={{textDecoration: 'none', color:'white'}}>
-                    Agregar al carrito
-                </Link>
+                Agregar al carrito
             </Button>
         </>
     );
