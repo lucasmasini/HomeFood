@@ -15,7 +15,7 @@ const ItemExpanded = ({ product }) => {
     }
     return (
         <>
-            <Button onClick={() => { setOpen(true) }} style={{ padding: 0, paddingTop: 6 }}>
+            <Button onClick={() => { setOpen(true) }} style={{ padding: 0, paddingTop: 8, color: '#ad2c08'}}>
                     Ver mas detalles
             </Button>
             <Modal

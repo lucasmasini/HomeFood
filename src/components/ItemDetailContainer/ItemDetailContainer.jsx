@@ -3,7 +3,6 @@ import ItemExpanded from '../ItemDetail/itemExpanded';
 
 
 const ItemDetailContainer = ({products}) => {
-    const ruta = '/cart';
     return (
         <>
             {

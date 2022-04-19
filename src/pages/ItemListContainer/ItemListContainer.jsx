@@ -34,7 +34,6 @@ const ItemListContainer = () => {
         setTimeout(() => { getItem() }, 1500);
     }, [name])
 
-    const ruta = '/cart';
     return (
         <>
             <div className='cardContainer' style={cardContainer}>
@@ -50,14 +49,6 @@ const ItemListContainer = () => {
                     )
                 }
             </div>
-            <div style={finishButtonContainer}>
-                <Button style={finishButton}> 
-                    <Link to={ruta} style={{ textDecoration: 'none', color: 'white' }}>
-                        Finalizar compra
-                    </Link>
-                </Button>
-            </div>
-
         </>
     );
 };
@@ -78,23 +69,6 @@ const cardContainer = {
     padding: '2em 0 0 1.2em',
     rowGap: '2.5em',
     columnGap: '.5em',
-    
+    marginBottom: '40px'
 };
 
-const finishButtonContainer = {
-    display: 'flex',
-    justifyContent : 'center',
-    alignItems: 'center',
-    marginTop: 40,
-    padding: 20
-}
-
-const finishButton ={
-    backgroundColor: '#c94c2a',
-    border: '0.1px solid black',
-    color:'white',
-    height:'100%',
-    fontSize: 14,
-    padding: 5,
-    marginBottom: '50px',
-}

@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,finishBuy}) => {
+const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,finishBuy,handleItemCount}) => {
     if(stock === 0){initial = 0;};
     const [stockButton,setstockButton] = useState(initial);
     const handlerAdd = () => {
@@ -13,6 +13,7 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
     };
     const onAdd = () =>{
         finishBuy(stockButton,stock);
+        handleItemCount();
     }
 
     return(
@@ -20,7 +21,7 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
             <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
             <Typography>{stockButton}</Typography>
             <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
-            <Button style={buttonAdd} onClick={onAdd}>
+            <Button style={buttonAdd} onClick={onAdd} on>
                 Agregar al carrito
             </Button>
         </>

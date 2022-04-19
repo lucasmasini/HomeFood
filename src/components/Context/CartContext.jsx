@@ -23,17 +23,17 @@ const CartProvider = ({children})=>{
     },[cartItems])
     
     // funcion por la cual se agraga un producto al carrito, con su cantidad seleccionada. No se puede superar el stock
-    const addItem = async (item,quantity)=>{
+    const addItems = (item,quantity)=>{
         const newCartProduct = {
             item: item, 
             quantity: quantity
         }
-        const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
-        if(inCart){
+        if(isInCart(item.id)){
+            const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
             SetcartItems(
                 cartItems.map((productInCart)=>{
                     if(productInCart.item.id === item.id && inCart.quantity < item.stock){
-                        return {...inCart, quantity: inCart.quantity + 1}
+                        return {...inCart, quantity: inCart.quantity + quantity}
                     } else {
                         return productInCart;
                     }
@@ -44,8 +44,16 @@ const CartProvider = ({children})=>{
             SetcartItems([...cartItems,newCartProduct])
         }
     };
-    // funcion por la cual se elimina un producto del carrito, por medio de su ID
-    const removeItem = (item,quantity)=>{
+    // funcion que elimina un producto entero del carrito segun su ID
+    const deleteItem = (id) =>{
+        if(isInCart(id)){
+            SetcartItems(
+                cartItems.filter((productInCart)=>productInCart.item.id !== id)
+            )
+        }
+    }
+    // funcion por la cual se disminuye en 1 la cantidad de un producto, segun su ID
+    const removeOneItem = (item,quantity)=>{
         const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
         if(inCart.quantity === 1 ){
             SetcartItems(
@@ -63,15 +71,29 @@ const CartProvider = ({children})=>{
             ); 
         }
     };
-    // funcion con la cual se consulta si el producto seleccionado ya esta agregado al carrito
+    //funcion por la cual se agrega de a 1 la cantidad de productos en el carrito, segun su ID
+    const addOneItem = (item)=>{
+        if(isInCart(item.id)){
+            const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
+            SetcartItems(
+                cartItems.map((productInCart)=>{
+                    if(productInCart.item.id === item.id && inCart.quantity < item.stock){
+                        return {...inCart, quantity: inCart.quantity + 1}
+                    } else {
+                        return productInCart;
+                    }
+                }
+                )
+            )
+        }
+    };
+    // funcion con la cual se consulta si el producto seleccionado ya esta agregado al carrito. Devuelve true or faslse
     const isInCart = (id)=>{
-        if(cartItems){
-        const productMatch = cartItems.find((product)=>product.item.id === id)
-        productMatch ? (alert(`El producto ${productMatch.item.name} ya se encuentra en el carrito`)
-        ):(
-            (alert(`El producto seleccionado no esta en el carrito`))
-        )} else {
-            alert(`El producto seleccionado no esta en el carrito`)
+        const inCart = cartItems.find((productInCart)=> productInCart.item.id === id);
+        if(inCart){
+            return true 
+        } else {
+            return false
         }
     };
     // funcion con la cual se borran todos los elementos del carrito
@@ -79,8 +101,17 @@ const CartProvider = ({children})=>{
         SetcartItems([])
     };
 
+    const values = {
+        addItems,
+        deleteItem,
+        removeOneItem,
+        addOneItem,
+        isInCart,
+        clear,
+        cartItems
+    }
     return(
-        <Provider value={{addItem , removeItem , isInCart , clear, cartItems}}>
+        <Provider value={values}>
             {children}
         </Provider>
         )
