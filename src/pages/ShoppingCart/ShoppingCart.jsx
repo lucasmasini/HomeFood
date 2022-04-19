@@ -1,8 +1,9 @@
 import { context } from '../../components/Context/CartContext';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import ItemCart from './CartItems/ItemCart';
-import ShoppingCartStyle from './ShoppingCartStyle.scss'
+import './ShoppingCartStyle.scss'
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
     const { cartItems, clear } = useContext(context);
@@ -14,7 +15,16 @@ const ShoppingCart = () => {
             {cartItems && (
                 <div className='ShoppingCartPage'>
                     <h2>Tu carrito</h2>
-                    {cartItems.length === 0 ? (<p>Tu carrito esta vacio</p>)
+                    {cartItems.length === 0 ? (
+                        <>
+                            <p>Tu carrito esta vacio</p>
+                            <Button className='BackToProductsButton'>
+                                <Link to='/products'>  
+                                    Volver a los productos
+                                </Link>
+                            </Button>
+                        </>
+                    )
                     :(
                         <>
                             <div className='CartItemsContainer'>

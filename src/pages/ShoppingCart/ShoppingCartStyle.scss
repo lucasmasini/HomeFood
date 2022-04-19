@@ -9,6 +9,25 @@
         color: #c94c2a;
         font-size: 16px;
     }
+    .BackToProductsButton{
+        width: 225px;
+        height: 32px;
+        background-color: #c94c2a;
+        border: 0.1px solid black;
+        font-size: 13px;
+        font-weight: 700;
+        margin: 20px;
+        a{
+            text-decoration: none;
+            color: #f5baa9;
+        }
+        a:hover{
+            color: #b6320e;
+        }
+    }
+    .BackToProductsButton:hover{
+        color: #b6320e;
+    }
     .CartItemsContainer {
         display: flex;
         flex-direction: column;

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { useContext } from 'react';
 import { context } from '../../../components/Context/CartContext';
-import ItemCartStyle from './ItemCartStyle.scss'
+import './ItemCartStyle.scss'
 
 const ItemCart = ({product})=>{
     const {removeOneItem, deleteItem, addOneItem} = useContext(context);
