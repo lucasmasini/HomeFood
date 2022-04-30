@@ -14,22 +14,21 @@ const CartProvider = ({children})=>{
         catch (error) {
             return [];
         }
-    })
+    }) 
 
     // Se gurdan los nuevos productos en el localStorage y se vuelven string los mismos
     useEffect(()=>{
         localStorage.setItem('cartProducts', JSON.stringify(cartItems));
-        console.log(cartItems);
     },[cartItems])
     
     // funcion por la cual se agraga un producto al carrito, con su cantidad seleccionada. No se puede superar el stock
     const addItems = (item,quantity)=>{
         const newCartProduct = {
-            item: item, 
-            quantity: quantity
+            ...item, 
+            quantity
         }
         if(isInCart(item.id)){
-            const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
+            const inCart = cartItems.find((productInCart)=> productInCart.id === item.id);
             SetcartItems(
                 cartItems.map((productInCart)=>{
                     if(productInCart.item.id === item.id && inCart.quantity < item.stock){
@@ -48,21 +47,21 @@ const CartProvider = ({children})=>{
     const deleteItem = (id) =>{
         if(isInCart(id)){
             SetcartItems(
-                cartItems.filter((productInCart)=>productInCart.item.id !== id)
+                cartItems.filter((productInCart)=>productInCart.id !== id)
             )
         }
     }
     // funcion por la cual se disminuye en 1 la cantidad de un producto, segun su ID
     const removeOneItem = (item,quantity)=>{
-        const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
+        const inCart = cartItems.find((productInCart)=> productInCart.id === item.id);
         if(inCart.quantity === 1 ){
             SetcartItems(
-                cartItems.filter((productInCart)=>productInCart.item.id !== item.id)
+                cartItems.filter((productInCart)=>productInCart.id !== item.id)
             );
         } else {
             SetcartItems(
                 cartItems.map((productInCart)=>{
-                    if(productInCart.item.id === item.id){
+                    if(productInCart.id === item.id){
                         return {...inCart, quantity: inCart.quantity - 1}
                     } else {
                         return productInCart;
@@ -74,10 +73,10 @@ const CartProvider = ({children})=>{
     //funcion por la cual se agrega de a 1 la cantidad de productos en el carrito, segun su ID
     const addOneItem = (item)=>{
         if(isInCart(item.id)){
-            const inCart = cartItems.find((productInCart)=> productInCart.item.id === item.id);
+            const inCart = cartItems.find((productInCart)=> productInCart.id === item.id);
             SetcartItems(
                 cartItems.map((productInCart)=>{
-                    if(productInCart.item.id === item.id && inCart.quantity < item.stock){
+                    if(productInCart.id === item.id && inCart.quantity < item.stock){
                         return {...inCart, quantity: inCart.quantity + 1}
                     } else {
                         return productInCart;
@@ -89,7 +88,7 @@ const CartProvider = ({children})=>{
     };
     // funcion con la cual se consulta si el producto seleccionado ya esta agregado al carrito. Devuelve true or faslse
     const isInCart = (id)=>{
-        const inCart = cartItems.find((productInCart)=> productInCart.item.id === id);
+        const inCart = cartItems.find((productInCart)=> productInCart.id === id);
         if(inCart){
             return true 
         } else {

@@ -1,51 +1,53 @@
-import ItemDetailContainer from '../../components/ItemDetailContainer/ItemDetailContainer';
 import { useState, useEffect } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { padding } from '@mui/system';
+import { db } from '../../firebase/firebase.jsx';
+import { getDocs, collection, query, where,orderBy } from 'firebase/firestore';
+import ItemList from '../../components/ItemList/ItemList';
+
 
 const ItemListContainer = () => {
-    const [products, setProducts] = useState([]);
-    const [loanding, setLoanding] = useState(true);
-    const [error, setError] = useState(false);
+    const [show,setShow] = useState(false);
+    const [productFromDb, setProductFromDb] = useState([]);
     const { name } = useParams();
 
-    const getItem = async () => {
-        try {
-            const response = await fetch('https://mocki.io/v1/26013644-68fd-4f36-a1dc-5d7392e653b5');
-            const data = await response.json();
-            (name) ?
-                (setProducts(data.filter(product => product.category === name))
-                ) : (
-                    setProducts(data));
-        }
-        catch {
-            setError(true);
-        }
-        finally {
-            setLoanding(false);
-        }
-    }
-
+    /* Query aplicando filtros que se quieram
+    const gourmetQuery = query(productsCollection, where('category','===','gourmet'));
+    const fastfoodQuery = query(productsCollection, where('category','===','fastfood'));
+    */
     useEffect(() => {
-        setTimeout(() => { getItem() }, 1500);
-    }, [name])
-
+        const productsCollection = collection(db, "ItemColection")
+        let productsQuery;
+        if(name === undefined){
+            productsQuery = query(productsCollection, orderBy('name'))
+        } else {
+            productsQuery = query(productsCollection, where('category','==',name))
+        }
+        getDocs(productsQuery)
+            .then((result) => {
+                const docs = result.docs;
+                setProductFromDb(docs.map(products => {
+                    const id = products.id;
+                    const product = {
+                        id,
+                        ...products.data()
+                    }
+                    return product
+                }))
+                setShow(true)
+            })
+        },[name])
     return (
         <>
             <div className='cardContainer' style={cardContainer}>
-                {(loanding) ?
-                    (<Box sx={{ width: '100%' }}>
+                { show?
+                    (
+                    <ItemList productFromDb={productFromDb} />
+                    ) : (
+                    <Box sx={{ width: '100%' }}>
                         <LinearProgress />
                     </Box>
-                    ) : (error ?
-                        (<h1>Lo sentimos, no se pudo cargar los productos</h1>
-                        ) : (
-                            <ItemDetailContainer products={products} />
-                        )
                     )
                 }
             </div>
@@ -62,9 +64,9 @@ export default ItemListContainer;
 
 const cardContainer = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, 320px)',
+    gridTemplateColumns: 'repeat(auto-fit, 360px)',
     gridTemplateRows: '420px',
-    justifyItems: 'center',
+    justifyContent: 'center',
     alingItems: 'center',
     padding: '2em 0 0 1.2em',
     rowGap: '2.5em',

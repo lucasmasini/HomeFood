@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    justify-content: center;
+    height: 490px;
+    padding: 5px;
+    margin: 20px
+}
+.backButtonContainer {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin-bottom: 20px;
+    .backButton{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #c94c2a;
+        border: 0.1px solid black;
+        a{
+            text-decoration: none;
+            color: #f5baa9;
+        }
+        a:hover{
+            color: #b6320e;
+        }
+    }
+}
+

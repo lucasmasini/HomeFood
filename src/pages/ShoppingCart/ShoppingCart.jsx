@@ -1,4 +1,4 @@
-import { context } from '../../components/Context/CartContext';
+import { context } from '../../Context/CartContext';
 import { useContext } from 'react';
 import ItemCart from './CartItems/ItemCart';
 import './ShoppingCartStyle.scss'
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const ShoppingCart = () => {
     const { cartItems, clear } = useContext(context);
 
-    const total = cartItems.reduce((previous,current)=> previous + current.quantity * current.item.price, 0);
+    const total = cartItems.reduce((previous,current)=> previous + current.quantity * current.price, 0);
 
     return (
         <>
