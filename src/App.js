@@ -7,6 +7,7 @@ import MainPage from './pages/MainPage/MainPage.jsx';
 import Footer from './components/Footer/Footer.jsx'
 import CartProvider from './Context/CartContext.jsx';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer.jsx';
+import Cart from './components/Cart/cart';
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
             <Route path='/products/:categoryId' element={<ItemDetailContainer/>}/>
             <Route path='/cart' element={<ShoppingCart />}/>
             <Route path='*' element={<MainPage />}/>
+            <Route path='/cartTest' element={<Cart/>}/>
           </Routes>
           <Footer/>
         </CartProvider>

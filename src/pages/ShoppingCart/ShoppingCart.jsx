@@ -6,9 +6,9 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
-    const { cartItems, clear } = useContext(context);
+    const { cartItems, clear, total} = useContext(context);
 
-    const total = cartItems.reduce((previous,current)=> previous + current.quantity * current.price, 0);
+    
 
     return (
         <>

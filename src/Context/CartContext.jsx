@@ -99,6 +99,8 @@ const CartProvider = ({children})=>{
     const clear = ()=>{
         SetcartItems([])
     };
+    // Precio total de la compra
+    const total = cartItems.reduce((previous,current)=> previous + current.quantity * current.price, 0);
 
     const values = {
         addItems,
@@ -107,7 +109,8 @@ const CartProvider = ({children})=>{
         addOneItem,
         isInCart,
         clear,
-        cartItems
+        cartItems,
+        total
     }
     return(
         <Provider value={values}>

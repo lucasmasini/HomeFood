@@ -1,7 +1,6 @@
 import Item from '../Item/Item'
 
 const ItemList = ({productFromDb}) => {
-    console.log(productFromDb)
 
     return (
         <>
