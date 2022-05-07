@@ -68,7 +68,7 @@ const Item = ({ product }) => {
                             {(isAddOnCart) ? (
                                 <Button style={finishButton}>
                                     <Link to={ruta} style={{ textDecoration: 'none', color: 'white' }}>
-                                        Finalizar compra
+                                        Ir al carrito
                                     </Link>
                                 </Button>
                             ) : (

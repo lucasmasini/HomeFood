@@ -1,14 +1,14 @@
 import { context } from '../../Context/CartContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import ItemCart from './CartItems/ItemCart';
 import './ShoppingCartStyle.scss'
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Cart from '../../components/Cart/cart';
+
 
 const ShoppingCart = () => {
     const { cartItems, clear, total} = useContext(context);
-
-    
 
     return (
         <>
@@ -36,6 +36,9 @@ const ShoppingCart = () => {
                             <Button className='deleteButton' onClick={()=>clear()}>
                                 Vaciar carrito
                             </Button>
+                            <div>
+                                <Cart/>
+                            </div>
                         </>
                     )}
 

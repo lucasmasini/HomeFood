@@ -103,6 +103,7 @@ const CartProvider = ({children})=>{
     const total = cartItems.reduce((previous,current)=> previous + current.quantity * current.price, 0);
 
     const values = {
+
         addItems,
         deleteItem,
         removeOneItem,
