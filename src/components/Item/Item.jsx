@@ -41,7 +41,13 @@ const Item = ({ product }) => {
     return (
         <>
             <div className='card' style={card}>
-                <Card sx={{ maxWidth: 320, minWidth: 280, border: '1px solid grey' }}>
+                <Card sx={{ 
+                        maxWidth: 320, 
+                        minWidth: 320, 
+                        border: '1px solid grey',
+                        boxShadow:'1px 3px 3px 1px rgba(66, 19, 6, 0.5)',
+                        backgroundColor:'#fde6dec4'
+                }}>
                     <CardMedia
                         component="img"
                         src={item.urlImage}
@@ -94,8 +100,8 @@ export default Item;
 const card = {
     display: 'flex',
     height: '416px',
-    witdh: '320px',
-    padding: '5px',
+    width: '320px',
+    padding: '5px'
 }
 const cardAction = {
     display: 'flex',

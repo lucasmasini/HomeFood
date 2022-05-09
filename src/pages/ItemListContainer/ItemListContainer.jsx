@@ -65,7 +65,6 @@ export default ItemListContainer;
 const cardContainer = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, 360px)',
-    gridTemplateRows: '420px',
     justifyContent: 'center',
     alingItems: 'center',
     padding: '2em 0 0 1.2em',

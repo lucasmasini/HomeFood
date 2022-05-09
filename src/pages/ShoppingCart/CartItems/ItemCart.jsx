@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import { useContext } from 'react';
 import { context } from '../../../Context/CartContext';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './ItemCartStyle.scss'
 
 const ItemCart = ({product})=>{
@@ -22,7 +23,7 @@ const ItemCart = ({product})=>{
                     </Button>
                     <li>$ {(product.price * product.quantity)}</li>
                     <Button className='DeleteCartButton' onClick={()=>deleteItem(product.id)}>
-                        x
+                        <DeleteIcon/>
                     </Button>
                 </ul>
             </div>

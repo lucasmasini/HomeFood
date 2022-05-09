@@ -11,7 +11,13 @@ const ItemList = ({productById})=>{
     return(
         <>
             <div className='card'>
-                <Card sx={{ maxWidth: 620, minWidth: 480, border: '1px solid grey' }}>
+                <Card sx={{ 
+                    maxWidth: 620, 
+                    minWidth: 480, 
+                    border: '1px solid grey',
+                    boxShadow:'1px 3px 3px 1px rgba(66, 19, 6, 0.5)',
+                    backgroundColor:'#fde6dec4'
+                }}>
                     <CardMedia
                         component="img"
                         src={productById.urlImage}

@@ -13,21 +13,20 @@ const App = () => {
 
   return(
     <>
-      <BrowserRouter>
-        <CartProvider>
-          <Header/> 
-          <Routes>
-            <Route path='/' element={<MainPage />}/>
-            <Route path='/products' element={<ItemListContainer />}/>
-            <Route path='/categories/:name' element={<ItemListContainer />}/>
-            <Route path='/products/:categoryId' element={<ItemDetailContainer/>}/>
-            <Route path='/cart' element={<ShoppingCart />}/>
-            <Route path='*' element={<MainPage />}/>
-            <Route path='/cartTest' element={<Cart/>}/>
-          </Routes>
-          <Footer/>
-        </CartProvider>
-      </BrowserRouter>
+        <BrowserRouter>
+          <CartProvider>
+            <Header/> 
+            <Routes>
+              <Route path='/' element={<MainPage />}/>
+              <Route path='/products' element={<ItemListContainer />}/>
+              <Route path='/categories/:name' element={<ItemListContainer />}/>
+              <Route path='/products/:categoryId' element={<ItemDetailContainer/>}/>
+              <Route path='/cart' element={<ShoppingCart />}/>
+              <Route path='*' element={<MainPage />}/>
+            </Routes>
+            <Footer/>
+          </CartProvider>
+        </BrowserRouter>
     </>
   )
 }

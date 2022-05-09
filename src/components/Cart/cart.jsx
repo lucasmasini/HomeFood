@@ -1,21 +1,16 @@
-import {addDoc, collection, serverTimestamp, updateDoc, doc} from 'firebase/firestore';
-import { useContext,useState } from 'react';
+import {addDoc, collection, serverTimestamp} from 'firebase/firestore';
+import { useContext} from 'react';
 import { context } from '../../Context/CartContext.jsx';
 import { db } from '../../firebase/firebase.jsx'
-import BuyForm from './BuyForm.jsx';
+import BuyForm from './BuyForm/BuyForm.jsx';
+import Swal from "sweetalert2";
 
 
 
 const Cart = ()=>{
     const {cartItems,total} = useContext(context);
 
-    // trayendo el ID de los productos comprados
-    // const id = cartItems.map(result => result.id)
-    // console.log(id)
-
-    const [idSell,setIdSell] = useState('')
-    const [IdItemSell,setIdItemSell] = useState('')
-    
+    let idSell;     
     const finishItemsBuy = (buyerData)=>{
         const ventaCollection = collection(db, "ventas")
             addDoc(ventaCollection,{
@@ -25,16 +20,35 @@ const Cart = ()=>{
                 total
             })
             .then( result => {
+                idSell = result.id;
                 console.log(result.id);
-                console.log(IdItemSell)
+                console.log(idSell);
                 }
             )
-        };    
-    // const orderDoc = doc(db,'ItemColection', cartItems.id)
-    //     updateDoc(orderDoc, {stock: (cartItems.stock - cartItems.quantity)})
+        };   
+        const BuyAlert = ()=>{
+            const idSellNumber = new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        idSell
+                    })
+                }, 1500)
+            })
+            Swal.fire({
+                title: 'Compra realizada',
+                confirmButtonText: '<a href="/products" style="text-decoration: none; color: white">Aceptar</a>',
+                confirmButtonColor: "#c94c2a",
+                text: 'Codigo de compra: ',
+                input:'radio',
+                inputOptions: idSellNumber,
+                timer: 6000,
+                backdrop: 'rgba(255, 173, 83, 0.39)'
+            })
+        };
+
     return(
         <>
-            <BuyForm finishItemsBuy={finishItemsBuy} cartItems={cartItems}/>
+            <BuyForm finishItemsBuy={finishItemsBuy} cartItems={cartItems} BuyAlert={BuyAlert}/>
         </>
     )
 }

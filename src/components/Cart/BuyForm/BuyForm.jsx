@@ -2,12 +2,12 @@ import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import { Modal } from "@mui/material";
 import { Button } from "@mui/material";
-import { useState,useContext } from 'react';
+import { useState,useContext} from 'react';
 import TextField from '@mui/material/TextField';
-import { context } from '../../Context/CartContext.jsx';
+import { context } from '../../../Context/CartContext.jsx';
 import './BuyForm.scss';
 
-const BuyForm = ({ finishItemsBuy, cartItems }) => {
+const BuyForm = ({ finishItemsBuy, cartItems,BuyAlert}) => {
     const {clear} = useContext(context);
     const { register, handleSubmit} = useForm();
 
@@ -16,18 +16,12 @@ const BuyForm = ({ finishItemsBuy, cartItems }) => {
         event.preventDefault();
         setOpen(!open)
     }
-
     const onSubmit = (data) => {
         if (cartItems) {
             finishItemsBuy(data);
             setOpen(!open)
             clear();
-            Swal.fire({
-                title: 'Compra Finalizada',
-                confirmButtonText: '<a href="/products" style="text-decoration: none; color: white">Aceptar</a>',
-                confirmButtonColor: "#c94c2a",
-                background: "#f09880",
-            })
+            BuyAlert();
         }
         else {
             cartItems <= 0 && Swal.fire('Su carrito esta vacio');

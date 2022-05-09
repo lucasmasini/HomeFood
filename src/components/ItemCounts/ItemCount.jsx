@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import './ItemCount.scss';
 
 const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,finishBuy,handleItemCount}) => {
     if(stock === 0){initial = 0;};
@@ -18,32 +20,14 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
 
     return(
         <>
-            <Button style={buttonHandler} onClick={handlerAdd}>{titleAdd}</Button>
+            <Button className='buttonHandler' onClick={handlerAdd}>{titleAdd}</Button>
             <Typography>{stockButton}</Typography>
-            <Button style={buttonHandler} onClick={handlerLess}>{titleLess}</Button>
-            <Button style={buttonAdd} onClick={onAdd} on>
-                Agregar al carrito
+            <Button className='buttonHandler' onClick={handlerLess}>{titleLess}</Button>
+            <Button className='buttonAdd' onClick={onAdd} on>
+                <AddShoppingCartIcon/>
             </Button>
         </>
     );
 }
 
 export default ItemCount;
-
-
-const buttonHandler ={
-    backgroundColor: '#c94c2a',
-    border: '0.1px solid black',
-    color:'white',
-    height:'100%',
-    fontSize: 20,
-    padding:0
-}
-const buttonAdd ={
-    backgroundColor: '#c94c2a',
-    border: '0.1px solid black',
-    color:'white',
-    height:'100%',
-    fontSize: 9,
-    padding: 5
-}
