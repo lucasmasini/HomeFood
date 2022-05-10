@@ -8,7 +8,7 @@ const pages = [
     {name:'Comida Rapida', route:'/categories/fastfood',id:"R1"},
     {name:'Gourmet',route:'/categories/gourmet',id:"G1"}
 ];
-const options = ['Perfil', 'Cuenta', 'Panel', 'Cerrar sesion'];
+const options = ['Ayuda en linea'];
 
 const Header = () =>{
     return (

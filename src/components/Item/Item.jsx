@@ -9,15 +9,28 @@ import { context } from '../../Context/CartContext';
 import { useContext, useState} from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+import Swal from 'sweetalert2';
+
+AOS.init();
 
 const Item = ({ product }) => {
-
     const item = {...product.product}
     const { addItems } = useContext(context);
     const [isAddOnCart, SetIsaddOnCart] = useState(false)
 
-    const handleItemCount = () => {
-        SetIsaddOnCart(!isAddOnCart)
+    const handleItemCount = (stockButton) => {
+        if(stockButton === 0){
+            Swal.fire({
+                text: 'Debe seleccionar al menos un producto',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#c94c2a"
+            })
+            
+        } else {
+            SetIsaddOnCart(!isAddOnCart)
+            }
     }
 
     const AddQuantity = (stock, stockButton, setstockButton) => {
@@ -40,7 +53,12 @@ const Item = ({ product }) => {
 
     return (
         <>
-            <div className='card' style={card}>
+            <div 
+                data-aos="zoom-in"
+                data-aos-duration="500"
+                data-aos-easing="ease-in-sine" 
+                style={card}
+                >
                 <Card sx={{ 
                         maxWidth: 320, 
                         minWidth: 320, 

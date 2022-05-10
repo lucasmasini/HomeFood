@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,28 +7,26 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import icono from '../../../assets/icono.png';
 import './NavBar.scss';
 import CartWidget from '../../CartWidget/CartWidget';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha} from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
 
-
-
-const NavBar = ({pages,options}) => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+const NavBar = ({ pages, options }) => {
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+    const [searchData,setSearchData] = useState({
+        search:''
+    });
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
@@ -36,6 +34,51 @@ const NavBar = ({pages,options}) => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const handleSeachInput = (event)=>{
+        setSearchData({
+            ...searchData,
+            [event.target.value]:event.target.value
+        });
+        console.log(event.target.value);
+    }
+
+    const SearchIconWrapper = styled('div')(({ theme }) => ({
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }));
+    const StyledInputBase = styled(InputBase)(({ theme }) => ({
+        color: 'secondary',
+        '& .MuiInputBase-input': {
+            padding: theme.spacing(1, 1, 1, 0),
+            // vertical padding + font size from searchIcon
+            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+            transition: theme.transitions.create('width'),
+            width: '100%',
+            [theme.breakpoints.up('md')]: {
+                width: '20ch',
+            },
+        },
+    }));
+    const Search = styled('div')(({ theme }) => ({
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.4),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.5),
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(3),
+            width: 'auto',
+        },
+    }));
 
     return (
         <AppBar style={ContainerStyle} className="AppBar" position="static">
@@ -76,14 +119,14 @@ const NavBar = ({pages,options}) => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                                    <NavLink to={page.route} style={{ textDecoration: 'none', color: '#ff7c58' }}> 
-                                        {page.name} 
+                                    <NavLink to={page.route} style={{ textDecoration: 'none', color: '#ff7c58' }}>
+                                        {page.name}
                                     </NavLink>
                                 </MenuItem>
                             ))}
                         </Menu>
-                        <div style={{margin:'auto', paddingRight: 25,paddingTop:6, display: 'block',}}>
-                            <CartWidget/>
+                        <div style={{ margin: 'auto', paddingRight: 25, paddingTop: 6, display: 'block', }}>
+                            <CartWidget />
                         </div>
                     </Box>
                     <Typography
@@ -99,29 +142,37 @@ const NavBar = ({pages,options}) => {
                             <Button
                                 key={page.id}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2,paddingLeft: 1.5, paddingRight: 1.5, display: 'block' }}
-                            > 
-                                <NavLink to={page.route}  style={{ textDecoration: 'none', color: 'white' }}>
+                                sx={{ my: 2, paddingLeft: 1.5, paddingRight: 1.5, display: 'block' }}
+                            >
+                                <NavLink to={page.route} style={{ textDecoration: 'none', color: 'white' }}>
                                     {page.name}
                                 </NavLink>
                             </Button>
                         ))}
-                        <Button onClick={handleCloseNavMenu} 
-                        sx={{my: 2,paddingLeft: 1.5, paddingRight: 1.5, 
-                            marginBottom:1, display: 'block',}}
+                        <Button onClick={handleCloseNavMenu}
+                            sx={{
+                                my: 2, paddingLeft: 1.5, paddingRight: 1.5,
+                                marginBottom: 1, display: 'block',
+                            }}
                         >
-                            <CartWidget/>
+                            <CartWidget />
                         </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open options">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar src="../../../assets/icono-persona.png"/>
-                            </IconButton>
-                        </Tooltip>
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Buscar.."
+                                inputProps={{ 'aria-label': 'search' }}
+                                onChange={handleSeachInput}
+                                name={'search'}
+                            />
+                        </Search>
                         <Menu
-                            sx={{ mt: '45px'}}
+                            sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{

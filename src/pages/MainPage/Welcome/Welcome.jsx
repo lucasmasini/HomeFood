@@ -6,6 +6,7 @@ const Welcome = ()=>{
         <>
         <div className='welcomeContainer'>
             <h1>HomeFood</h1>
+            <p>Tu comida favorita en la comidad de tu casa</p>
         </div>
         </>
     )

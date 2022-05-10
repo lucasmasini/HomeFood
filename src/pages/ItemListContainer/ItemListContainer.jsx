@@ -68,7 +68,7 @@ const cardContainer = {
     justifyContent: 'center',
     alingItems: 'center',
     padding: '2em 0 0 1.2em',
-    rowGap: '2.5em',
+    rowGap: '3em',
     columnGap: '.5em',
     marginBottom: '40px'
 };
