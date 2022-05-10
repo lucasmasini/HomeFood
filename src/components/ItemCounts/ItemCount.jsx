@@ -15,7 +15,7 @@ const ItemCount = ({stock,titleAdd,titleLess,initial,AddQuantity,LessQuantity,fi
     };
     const onAdd = () =>{
         finishBuy(stockButton,stock);
-        handleItemCount();
+        handleItemCount(stockButton);
     }
 
     return(

@@ -12,25 +12,46 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import Swal from 'sweetalert2';
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 AOS.init();
 
 const Item = ({ product }) => {
     const item = {...product.product}
     const { addItems } = useContext(context);
-    const [isAddOnCart, SetIsaddOnCart] = useState(false)
+    const [isAddOnCart, SetIsaddOnCart] = useState(false);
+
+    const notificationAddProduct = ()=> {
+        Toastify({
+            text: "Agregado al carrito",
+            duration: 1800,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: false,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "#e7572f",
+                borderRadius: "11px",
+                border: "1px solid #c94c2a"
+            },
+            onClick: function () { }
+        }).showToast();
+    }
 
     const handleItemCount = (stockButton) => {
-        if(stockButton === 0){
+        if(stockButton < 1){
             Swal.fire({
                 text: 'Debe seleccionar al menos un producto',
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: "#c94c2a"
             })
-            
         } else {
             SetIsaddOnCart(!isAddOnCart)
-            }
+            notificationAddProduct();
+        }
     }
 
     const AddQuantity = (stock, stockButton, setstockButton) => {
