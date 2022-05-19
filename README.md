@@ -8,10 +8,11 @@ Estas instrucciones te permitirán obtener una copia del proyecto en funcionamie
 Debes clonar el repositorio
 
 https://github.com/lucasmasini/HomeFood.git
+
 En VSC abrir la consola y
 
 npm install
-Correr la aplicación ⚙
+
 npm start
 
 ## Herramientas utilizadas para crear el proyecto 🛠️:
