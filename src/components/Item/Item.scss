@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    height: 416px;
+    width: 320px;
+    padding: 5px;
+    .cardDescription{
+        max-width: 321px; 
+        min-width: 320px; 
+        border: 1px solid grey;
+        box-shadow:1px 3px 3px 1px rgba(66, 19, 6, 0.5);
+        background-color:#fde6dec4;
+    }
+    .cardAction {
+        display: flex;
+        height: 30px;
+        justify-content: space-between;
+    }
+    .finishButton {
+        background-color: #c94c2a;
+        border: 0.1px solid black;
+        color:white;
+        height:100%;
+        font-size: 14;
+        padding: 5;
+        margin-left:5px;
+        margin-bottom: 20px;
+    }
+}

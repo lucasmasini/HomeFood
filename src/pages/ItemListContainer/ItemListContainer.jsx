@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../firebase/firebase.jsx';
 import { getDocs, collection, query, where,orderBy } from 'firebase/firestore';
 import ItemList from '../../components/ItemList/ItemList';
-
+import './ItemListContainer.scss';
 
 const ItemListContainer = () => {
     const [show,setShow] = useState(false);
@@ -40,7 +40,7 @@ const ItemListContainer = () => {
         },[name])
     return (
         <>
-            <div className='cardContainer' style={cardContainer}>
+            <div className='cardContainer'>
                 { show?
                     (
                     <ItemList productFromDb={productFromDb} />
@@ -57,19 +57,4 @@ const ItemListContainer = () => {
 
 export default ItemListContainer;
 
-
-
-
-// ------ESTILOS--------
-
-const cardContainer = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, 360px)',
-    justifyContent: 'center',
-    alingItems: 'center',
-    padding: '2em 0 0 1.2em',
-    rowGap: '3em',
-    columnGap: '.5em',
-    marginBottom: '40px'
-};
 

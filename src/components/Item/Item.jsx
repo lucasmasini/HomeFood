@@ -14,6 +14,7 @@ import 'aos/dist/aos.css';
 import Swal from 'sweetalert2';
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import './Item.scss';
 
 AOS.init();
 
@@ -77,16 +78,10 @@ const Item = ({ product }) => {
             <div 
                 data-aos="zoom-in"
                 data-aos-duration="500"
-                data-aos-easing="ease-in-sine" 
-                style={card}
+                data-aos-easing="ease-in-sine"
+                className='card'
                 >
-                <Card sx={{ 
-                        maxWidth: 320, 
-                        minWidth: 320, 
-                        border: '1px solid grey',
-                        boxShadow:'1px 3px 3px 1px rgba(66, 19, 6, 0.5)',
-                        backgroundColor:'#fde6dec4'
-                }}>
+                <Card className='cardDescription'>
                     <CardMedia
                         component="img"
                         src={item.urlImage}
@@ -109,9 +104,9 @@ const Item = ({ product }) => {
                                 </Link>
                             </Typography>
                         </CardContent>
-                        <CardActions className='cardAction' style={cardAction}>
+                        <CardActions className='cardAction'>
                             {(isAddOnCart) ? (
-                                <Button style={finishButton}>
+                                <Button className='finishButton'>
                                     <Link to={ruta} style={{ textDecoration: 'none', color: 'white' }}>
                                         Ir al carrito
                                     </Link>
@@ -132,28 +127,3 @@ const Item = ({ product }) => {
 };
 
 export default Item;
-
-
-// ------ESTILOS--------
-
-const card = {
-    display: 'flex',
-    height: '416px',
-    width: '320px',
-    padding: '5px'
-}
-const cardAction = {
-    display: 'flex',
-    height: '30px',
-    justifyContent: 'space-between'
-}
-const finishButton ={
-    backgroundColor: '#c94c2a',
-    border: '0.1px solid black',
-    color:'white',
-    height:'100%',
-    fontSize: 14,
-    padding: 5,
-    marginLeft:'5px',
-    marginBottom: '20px',
-}
