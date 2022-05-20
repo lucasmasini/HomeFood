@@ -19,11 +19,11 @@ npm start
 
 ## Herramientas utilizadas para crear el proyecto 🛠️:
 
-- React 
-- Mui - Libreria de Iconos
-- Firebase - Firestore database
-- SweetAlert2
-- Sass
+* [React](https://reactjs.org)
+* [Mui](https://mui.com/material-ui/getting-started/installation/) - Libreria de Iconos
+* [Firebase](https://console.firebase.google.com/project/deco-home-b9f06/firestore/data/~2Fproductos?hl=es)
+* SweetAlert2
+* Sass
 
 Autor ✒️
--Lucas Masini 
+* Lucas Masini 
