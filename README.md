@@ -10,10 +10,12 @@ Debes clonar el repositorio
 https://github.com/lucasmasini/HomeFood.git
 
 En VSC abrir la consola y
-
+```
 npm install
-
+```
+```
 npm start
+```
 
 ## Herramientas utilizadas para crear el proyecto 🛠️:
 
