@@ -32,7 +32,7 @@ const Cart = ()=>{
                     resolve({
                         idSell
                     })
-                }, 1500)
+                }, 2100)
             })
             Swal.fire({
                 title: 'Compra realizada',
